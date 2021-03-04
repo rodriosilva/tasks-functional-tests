@@ -48,7 +48,7 @@ public class TasksTest {
 	@Test
 	public void naodeveSalvarTarefaSemDescricao() {
 		WebDriver driver = acessarAplicacao();
-			
+		try {	
 			//Clicar em Add
 			driver.findElement(By.id("addTodo")).click();
 			
@@ -64,12 +64,16 @@ public class TasksTest {
 			//Validar mensagem sucesso
 			String message = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Fill the task description", message);
-	}
+		} finally {
+			//fechar o browser
+			driver.quit();
+		}
+	} 	
 	
 	@Test
 	public void naodeveSalvarTarefaSemData() {
 		WebDriver driver = acessarAplicacao();
-			
+		try {	
 			//Clicar em Add
 			driver.findElement(By.id("addTodo")).click();
 			
@@ -82,11 +86,15 @@ public class TasksTest {
 			//Validar mensagem sucesso
 			String message = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Fill the due date", message);
+		} finally {
+			//fechar o browser
+			driver.quit();
+		}
 	}
 	
 	public void deveSalvarTarefaComDataPassada() {
 		WebDriver driver = acessarAplicacao();
-			
+		try {	
 			//Clicar em Add
 			driver.findElement(By.id("addTodo")).click();
 			
@@ -102,6 +110,9 @@ public class TasksTest {
 			//Validar mensagem sucesso
 			String message = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Due date must not be in past", message);
-		
+		} finally {
+			//fechar o browser
+			driver.quit();
+		}
 	}
 }
